@@ -5,45 +5,36 @@ import Link from "../link";
 const MenuItem = ({ index, children, mb, link, ...rest }) => (
   <Box as="li" listStyleType="none" mb={mb} {...rest}>
     <Link
-      display="block"
-      color="white"
+      display="flex"
+      justifyContent="flex-start"
       role="group"
       pos="relative"
-      minH="40px"
-      borderBottom="1px solid"
-      borderColor="#ffffff14"
+      minH="25px"
+
       _hover={{
-        bg: "rgba(236, 164, 25, 0.14)",
-        borderColor: "accent.400",
-        color: "accent.400"
+        //bg: "rgba(236, 164, 25, 0.14)",
+        borderColor: "briefstory.blueIcon",
+        color: "briefstory.yellow",
       }}
       _focus={{
-        bg: "rgba(236, 164, 25, 0.14)",
-        borderColor: "accent.400",
-        color: "accent.400"
+        //bg: "rgba(236, 164, 25, 0.14)",
+        borderColor: "briefstory.blueIcon",
+        color: "briefstory.yellow",
       }}
       transition="all 0.3s"
-      padding="12px"
+      //padding="12px"
       link={link}
     >
       <Box
-        as="span"
-        pos="absolute"
-        top="50%"
-        transform="translateY(-50%)"
-        fontSize="md"
-        letterSpacing="-0.024"
-        lineHeight="1.23"
-      >
-        {index}
-      </Box>
-      <Box
-        paddingLeft={10}
         letterSpacing="-0.004em"
         lineHeight="1.39"
-        fontWeight="medium"
-        fontSize="24px"
         cursor="pointer"
+        fontFamily="Lato"
+        fontWeight="700 !important"
+        textTransform="uppercase"
+        fontSize="14px"
+        color="briefstory.iconBlue"
+
       >
         {children}
       </Box>

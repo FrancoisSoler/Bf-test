@@ -6,18 +6,18 @@ const SearchButton = props => (
   <Box
     aria-label="Search this site"
     as="button"
-    display="flex"
+    display={{base: "flex", md:"none"}}
     alignItems="center"
-    justifyContent="center"
+    //mr={{ base: "12px", md: "40px" }}
     transition="background-color ease 0.25s"
-    _hover={{ bg: "white" }}
+  borderRadius="5px"
     flexShrink="0"
-    boxSize="46px"
-    bg="accent.400"
-    ml={{ base: "auto", lg: "3rem" }}
+    boxSize="36px"
+    bg="briefstory.menuIcon"
+   // ml={{ base: "auto", lg: "3rem" }}
     {...props}
   >
-    <Box boxSize={6} color="primary.700" as={IoIosSearch} />
+    <Box boxSize={4} margin="0 auto" color="briefstory.blueIcon" as={IoIosSearch} />
   </Box>
 );
 

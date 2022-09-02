@@ -5,11 +5,11 @@ import FrontityLink from "../link";
 
 const Link = styled(FrontityLink)`
   position: relative;
-  color: #fff;
+  color: #33344e;
   text-decoration: none;
+  transition: color 0.2s ease-in;
 
   &:after {
-    transition: bottom ease 0.25s, background-color ease 0.25s;
     content: "";
     width: 100%;
     height: 2px;
@@ -20,20 +20,18 @@ const Link = styled(FrontityLink)`
   }
 
   &:hover {
-    &:after {
-      bottom: -5px;
-      background-color: ${p => p.theme.colors.accent[400]};
-    }
+    color: #fbae66;
   }
 `;
 
-export const SiteMenu = props => (
+export const SiteMenu = (props) => (
   <Stack
     ml="50px"
-    spacing="50px"
+    spacing="30px"
     as="ul"
     listStyleType="none"
     align="center"
+    justifyContent="flex-end"
     direction="row"
     color="white"
     {...props}
@@ -43,10 +41,10 @@ export const SiteMenu = props => (
 const SiteMenuItem = ({ link, ...props }) => (
   <Box
     as="li"
-    color="white"
+    color="primary.700"
     fontSize={{ base: "sm", lg: "md" }}
     fontWeight="medium"
-    fontFamily="Kelson"
+    fontFamily="heading"
     textTransform="uppercase"
     position="relative"
     cursor="pointer"
@@ -57,7 +55,11 @@ const SiteMenuItem = ({ link, ...props }) => (
 );
 
 const Navigation = ({ menu, ...props }) => (
-  <Box as="nav" width="100%" display={{ base: "none", lg: "block" }} {...props}>
+  <Box
+    as="nav"
+    display={{ base: "none", md: "inline-block" }}
+    {...props}
+  >
     <SiteMenu>
       {menu.map(([name, link]) => (
         <SiteMenuItem key={name} link={link}>

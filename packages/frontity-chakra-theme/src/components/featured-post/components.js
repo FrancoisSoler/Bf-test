@@ -1,5 +1,5 @@
-import { Box, Heading } from "@chakra-ui/react";
-import { styled } from "frontity";
+import { Box, Heading, Flex } from "@chakra-ui/react";
+import { styled, css } from "frontity";
 import React from "react";
 import Link from "../link";
 import Image from "@frontity/components/image";
@@ -11,9 +11,10 @@ export const PostLink = styled(Link)`
   top: 0;
   left: 0;
   z-index: 1;
+  textAlign="left"
 `;
 
-export const PostContent = props => (
+export const PostContent = (props) => (
   <Box
     p="40px"
     width="100%"
@@ -21,25 +22,62 @@ export const PostContent = props => (
     flexDirection="column"
     textTransform="uppercase"
     mt="auto"
-    textAlign="center"
+    textAlign="left"
     color="white"
     zIndex="2"
     {...props}
   />
 );
+export const PostImageHomeContainer = ({ src, alt, srcSet, ...props }) => (
+  <Box
+    role="group"
+    cursor="pointer"
+    //margin={{ base: "8px 15px 8px 0", sm: "10px 20px 10px 0", md: "12px" }}
+    maxW="95%"
+    maxH="95%"
+    w={{ base: "30%", sm: "30%" }}
+    position="relative"
+    padding={{ base: "8px 8px 8px 0", sm: "8px 8px 8px 0" }}
+     css={css`
+     flex-shrink: 0;
 
-export const PostTitle = props => (
+/*       @media (max-width: 300px) {
+        max-height: 90%;
+      } */
+    `}  
+    {...props}
+  >
+    <PostImageHome src={src} alt={alt} srcSet={srcSet} />
+  </Box>
+);
+export const PostImageHome = (props) => (
+  <Box
+    as={Image}
+    //boxSize="100%"
+    //margin="0 0 0 auto"
+    borderRadius="10px"
+    
+    css={css`
+    width: 100%;
+    height: auto;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    `}
+    {...props}
+  />
+);
+
+export const PostTitle = (props) => (
   <Heading
     as="h1"
     size="2xl"
     pointerEvents="none"
-    fontWeight="medium"
     position="relative"
     {...props}
   />
 );
 
-export const PostOverlay = props => (
+export const PostOverlay = (props) => (
   <Box
     pointerEvents="none"
     zIndex={1}
@@ -50,7 +88,7 @@ export const PostOverlay = props => (
     background="rgba(0,0,0,0.4)"
     transition="background-color ease 0.25s"
     _groupHover={{
-      background: "rgba(0,0,0,0.6)"
+      background: "rgba(0,0,0,0.6)",
     }}
     {...props}
   />
@@ -70,7 +108,7 @@ export const PostImageWithOverlay = ({ src, alt, srcSet, ...props }) => (
   </Box>
 );
 
-export const PrimaryPostArticle = props => (
+export const PrimaryPostArticle = (props) => (
   <Box
     as="article"
     position="relative"
@@ -85,7 +123,7 @@ export const PrimaryPostArticle = props => (
   />
 );
 
-export const SecondaryPostArticle = props => (
+export const SecondaryPostArticle = (props) => (
   <Box
     as="article"
     position="relative"
@@ -99,7 +137,7 @@ export const SecondaryPostArticle = props => (
   />
 );
 
-export const PostImage = props => (
+export const PostImage = (props) => (
   <Box
     as={Image}
     width="900"

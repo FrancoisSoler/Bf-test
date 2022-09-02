@@ -1,6 +1,7 @@
 import React from "react";
 import { Alert, Text, Box, Heading } from "@chakra-ui/react";
 import Link from "../link";
+import { css } from "frontity";
 
 /**
  *
@@ -17,7 +18,7 @@ function makeProcessor(tag, options) {
       return node;
     },
     // allow for overriding this processors
-    priority: 20
+    priority: 20,
   };
 }
 
@@ -25,9 +26,9 @@ const blockquote = makeProcessor("blockquote", {
   props: () => ({
     variant: "left-accent",
     status: "warning",
-    marginY: "20px"
+    marginY: "20px",
   }),
-  component: Alert
+  component: Alert,
 });
 
 const paragraph = makeProcessor("p", {
@@ -37,10 +38,10 @@ const paragraph = makeProcessor("p", {
     return {
       marginTop: hasParent ? "0" : "10px",
       fontSize: { base: "md", md: "lg" },
-      lineHeight: "tall"
+      lineHeight: "tall",
     };
   },
-  component: Text
+  component: Text,
 });
 
 const figcaption = makeProcessor("figcaption", {
@@ -50,31 +51,56 @@ const figcaption = makeProcessor("figcaption", {
     marginTop: "20px",
     textAlign: "center",
     opacity: 0.8,
-    marginBottom: "40px"
+    marginBottom: "40px",
   }),
-  component: Box
+  component: Box,
 });
 
 // make for h1, h2, h4, h5, h6
 const h3 = makeProcessor("h3", {
   props: () => ({
     as: "h3",
-    marginTop: "40px",
+    marginTop: "25px",
     fontSize: { base: "lg", md: "xl" },
-    textTransform: "uppercase"
+    fontFamily: "CatamaranBold",
+    fontWeight: "600",
+    lineHeight: "24px",
+    marginBottom: "1.2em",
   }),
-  component: Heading
+  component: Heading,
 });
 
 const PostLink = ({ children, href, rel, ...props }) => (
   <Box
-    as="span"
-    fontWeight="medium"
-    color="accent.400"
-    _hover={{
-      textDecoration: "underline"
-    }}
+    display="inline-flex"
     {...props}
+    className="postLinkHover"
+    
+    css={css`
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      z-index: 1;
+      //word-break: break-all;
+
+      &::after {
+        content: "";
+        //background: #f0f;
+        position: absolute;
+        left: 12px;
+        bottom: -6px;
+        width: calc(100% - 8px);
+        height: calc(100% - 8px);
+        z-index: -10;
+        transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
+      }
+      &:hover:after {
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 100%;
+      }
+    `}
   >
     <Link rel={rel} link={href}>
       {children}
@@ -84,7 +110,7 @@ const PostLink = ({ children, href, rel, ...props }) => (
 
 const a = makeProcessor("a", {
   props: ({ node }) => node.props,
-  component: PostLink
+  component: PostLink,
 });
 
 const processors = [blockquote, paragraph, figcaption, h3, a];

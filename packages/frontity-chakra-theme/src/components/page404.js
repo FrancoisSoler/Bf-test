@@ -1,37 +1,38 @@
-import React from "react";
-import { styled } from "frontity";
+import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import SearchForm from './search/search-form';
 
-const Page404 = () => (
-  <Container>
-    <Title>Oops! 404</Title>
-    <Description>
-      That page can’t be found{" "}
-      <span role="img" aria-label="confused face">
-        😕
-      </span>
-    </Description>
-  </Container>
-);
+const Page404 =({state}) =>{
+  return(
+    <>
+    <Box backgroundColor={'briefstory.bg'} height={{base: '100%', md: '50%', xl: '25%',}}>
+      <Box pb="60px">
+      <Box  mt="-60px" width="100%" marginTop={'50px'} textAlign={"center"} fontSize={['sm', 'md', 'lg', 'xl']}>
+        <Heading pt="100px"  fontWeight="medium">
+          Error 404
+        </Heading>
+      </Box>
+      <Box pt="100px"
+          fontSize={['sm', 'md', 'lg', 'xl']}
+           maxW="1400px"
+          position="relative"
+          mx="auto"
+          width="100%"
+          textAlign={'center'}
+          >
+      <Text maxW="600px" mx="auto" p={'20px'}>
+        Aucun article trouvé
+      </Text>
+      <Text maxW="600px" mx="auto" pb={'20px'} fontSize='sm'>
+        Utilisez le formulaire de texte ci dessous pour trouver la page que vous recherchez
+      </Text>
+      <Box>
+      <SearchForm bg="rgba(24, 22, 23, 0.9)"/>
+      </Box>
+      </Box>
+      </Box>
+    </Box>
+    </>
+  )
+};
 
 export default Page404;
-
-const Container = styled.div`
-  width: 800px;
-  margin: 0;
-  padding: 24px;
-  text-align: center;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  margin-top: 24px;
-  margin-bottom: 8px;
-  color: rgba(12, 17, 43);
-  font-size: 4em;
-`;
-
-const Description = styled.div`
-  line-height: 1.6em;
-  color: rgba(12, 17, 43, 0.8);
-  margin: 24px 0;
-`;

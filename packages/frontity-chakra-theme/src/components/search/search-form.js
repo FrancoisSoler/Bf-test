@@ -19,21 +19,28 @@ const SearchForm = props => {
       {...form}
     >
       <Input
-        placeholder="Type and Hit Enter"
-        variant="flushed"
-        size="lg"
-        fontSize={{ base: "24px", md: "32px" }}
+        
+        placeholder="Entrer pour rechercher"
+        _placeholder={{ fontSize: '.7em', fontStyle: 'italic' }}
+        variant="outline"
+        size="xs"
+        borderRadius="15"
+        color="#fff"
+        bg="rgba(24, 22, 23, 0.9)"
+        margin="1.5em 0"
+        padding="1em"
+        fontSize={{ base: "20px", md: "26px" }}
         height="auto"
-        focusBorderColor="primary.400"
+        focusBorderColor="briefstory.yellow"
         py={{ base: 1, md: 3 }}
         {...input}
       />
       <Icon
         name="search"
         size="1.5rem"
-        color="gray.400"
-        position="absolute"
-        right="0"
+        color="#fff"
+         position="absolute"
+        right="5"
       />
     </Flex>
   );

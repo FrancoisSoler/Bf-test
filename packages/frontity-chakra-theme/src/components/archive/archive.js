@@ -1,56 +1,65 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
-import { connect } from "frontity";
 import React from "react";
-import ArchiveHeader from "./archive-header";
-import ArchiveItem from "./archive-item";
-import HomepageArchive from "./homepage-archive";
-import Pagination from "./pagination";
-import { decode } from "frontity";
-import AuthorHeader from "./author-header";
+import { connect } from "frontity";
+import useArchiveInfiniteScroll from "@frontity/hooks/use-archive-infinite-scroll";
+import ArchivePage from "./archive-page";
+import { Box, Button, Flex } from "@chakra-ui/react";
 const Archive = ({ state }) => {
+  const { pages, isFetching, isError, isLimit, fetchNext } =
+    useArchiveInfiniteScroll();
+
+  function checkBg(data) {
+    if (data.isAuthor) {
+      return "#f7f7f8";
+    }
+    if (data.isCategory) {
+      return state.source.category[data.id].acf.couleur_tag;
+    } else {
+      return "#faefe7";
+    }
+  }
   // Get the data of the current list.
   const data = state.source.get(state.router.link);
-  console.log('dza',data)
-
-  if (data.isHome) return <HomepageArchive />;
-
   return (
-    <Box bg="accent.50" as="section">
-      {/* If the list is a taxonomy, we render a title. */}
-      {data.isTaxonomy && (
-        <ArchiveHeader
-          showPattern={state.theme.showBackgroundPattern}
-          taxonomy={data.taxonomy}
-          title={decode(state.source[data.taxonomy][data.id].name)}
-        />
+    <Box>
+      {pages.map(({ Wrapper, key, link }) => (
+        <Wrapper key={key}>
+          <ArchivePage link={link} />
+        </Wrapper>
+      ))}
+      {isFetching && (
+        <Flex bg={checkBg(data)} height="5em" alignItems="center">
+          <Box
+            bg={checkBg(data)}
+            margin="0 auto"
+            padding="1em"
+            fontFamily="OpenSans"
+            color="briefstory.blueIcon"
+            border="2px solid #4e4b5f"
+            borderRadius="5px"
+          >
+            Chargement
+          </Box>
+        </Flex>
       )}
+      {isLimit && (
+        <Flex bg={checkBg(data)} height="5em" alignItems="center">
+          <Button
+            // display="inline-flex"
+            bg={checkBg(data)}
+            margin="0 auto"
+            padding="1em"
+            onClick={fetchNext}
+            fontFamily="OpenSans"
+            color="briefstory.blueIcon"
+            border="2px solid #4e4b5f"
+            borderRadius="5px"
+          >
+            Charger plus
+          </Button>
 
-      {/* If the list is an author, we render a title. */}
-      {data.isAuthor && (
-        <AuthorHeader
-/*           showPattern={state.theme.showBackgroundPattern}
-          taxonomy="Posts By"
-          title={decode(state.source.author[data.id].name)}
-         *//>
+          {isError && <Button onClick={fetchNext}>Essayer à nouveau</Button>}
+        </Flex>
       )}
-
-      <Box
-        padding={{ base: "24px", lg: "40px" }}
-        bg="white"
-        width={{ lg: "80%" }}
-        maxWidth="1200px"
-        mx="auto"
-      >
-        {/* Iterate over the items of the list. */}
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing="40px">
-          {data.items.map(({ type, id }) => {
-            const item = state.source[type][id];
-            return <ArchiveItem key={item.id} item={item} />;
-          })}
-        </SimpleGrid>
-
-        <Pagination mt="56px" />
-      </Box>
     </Box>
   );
 };

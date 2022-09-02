@@ -3,7 +3,7 @@ import React from "react";
 import { SiteMenu } from "./navigation";
 import {
   IoLogoTwitter,
-  IoLogoPinterest,
+  IoLogoLinkedin,
   IoLogoFacebook,
   IoLogoInstagram
 } from "react-icons/io";
@@ -11,7 +11,7 @@ import Link from "../link";
 
 // warning for showSocialLinks and menu.length
 export const SocialMenu = ({ menu, ...props }) => (
-  <SiteMenu spacing="30px" ml="24px" position={{ sm: "relative" }} {...props}>
+  <SiteMenu spacing="20px" ml="24px" position={{ sm: "relative" }} {...props}>
     {menu.map(([name, link]) => {
       const SocialIcon = icons[name];
       return (
@@ -23,7 +23,7 @@ export const SocialMenu = ({ menu, ...props }) => (
 
 const SocialMenuItem = ({ icon, label, link, ...props }) => (
   <Box
-    color="accent.400"
+    color="gray"
     transition="all 0.3s"
     _hover={{ color: "white" }}
     as="li"
@@ -32,7 +32,7 @@ const SocialMenuItem = ({ icon, label, link, ...props }) => (
     {...props}
   >
     <Link link={link}>
-      <Box as={icon} boxSize="24px" />
+      <Box as={icon} boxSize="20px" />
     </Link>
     <VisuallyHidden>{label}</VisuallyHidden>
   </Box>
@@ -40,15 +40,16 @@ const SocialMenuItem = ({ icon, label, link, ...props }) => (
 
 const icons = {
   twitter: IoLogoTwitter,
-  pinterest: IoLogoPinterest,
+  linkedin: IoLogoLinkedin,
   facebook: IoLogoFacebook,
   instagram: IoLogoInstagram
 };
 
 const SocialNav = ({ menu, ...props }) => (
-  <Box ml="auto" display={{ base: "none", lg: "block" }} {...props}>
+  <Box ml="auto" display={{ base: "none", lg: "none" }} {...props}>
     <SocialMenu menu={menu} />
   </Box>
 );
 
 export default SocialNav;
+

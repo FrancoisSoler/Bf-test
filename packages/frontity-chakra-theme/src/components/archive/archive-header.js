@@ -1,23 +1,32 @@
-import { Heading, Text } from "@chakra-ui/react";
-import React from "react";
-import { PatternBox, PatternBoxInner } from "../styles/pattern-box";
+import { Box, Text, Flex, Button, Image } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import CatCallToAction from "./cat-cta";
+const ArchiveHeader = ({
+  postData,
+  state,
+  taxonomy,
+  title,
+  data,
+  ...props
+}) => {
+  const dataLink = state.source.get(state.router.link);
+  const isCategoryId = dataLink.isCategory;
 
-const ArchiveHeader = ({ taxonomy, title, ...props }) => (
-  <PatternBox pb="80px" mb="-80px" {...props}>
-    <PatternBoxInner>
-      <Text textTransform="uppercase" color="#fff" fontWeight="bold">
-        {taxonomy}
-      </Text>
-      <Heading
-        mt="8px"
-        textTransform="uppercase"
-        fontSize={{ base: "5xl", md: "6xl" }}
-        color="accent.400"
-      >
-        {title}
-      </Heading>
-    </PatternBoxInner>
-  </PatternBox>
-);
+  const [textTag, setTags] = useState();
+    const catSlug = state.source.category[data.id].slug;
+  const boolPage = "/category/"+catSlug+"/"
+  const isPageCat = data.link == boolPage 
+   const notShow =  data.next !== data.link
+
+/*   const [LinkUrlState, setState] = useState(data.link); */
+
+  useEffect(() => {
+    const textTag = JSON.parse(localStorage.getItem("textTag"));
+    if (textTag) {
+      setTags(textTag);
+    }
+  }, []);
+  return <Box bg="#faefe7">{isPageCat && isCategoryId == true && <CatCallToAction isPageCat={notShow} /* showCat={showCat} */ />}</Box>;
+};
 
 export default ArchiveHeader;

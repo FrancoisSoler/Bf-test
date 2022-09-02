@@ -2,6 +2,8 @@ import { Box, CircularProgress } from "@chakra-ui/react";
 
 const Loading = () => (
   <Box
+    height="80vh"
+    bg='briefstory.bg'
     mx="auto"
     p="24px"
     display="flex"

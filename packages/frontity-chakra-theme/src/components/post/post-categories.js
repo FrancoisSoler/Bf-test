@@ -5,18 +5,11 @@ import { decode } from "frontity";
 
 export const PostCategory = props => (
   <Box
-    transition="background-color ease 0.25s"
-    px="5px"
-    border="2px solid"
-    borderColor="accent.400"
-    fontFamily="heading"
-    textTransform="uppercase"
-    fontWeight="medium"
+   // px="5px"
+    color={"#adadad"}
+    fontFamily="OpenSans"
+    fontWeight="normal"
     display="inline-block"
-    _hover={{
-      bg: "accent.400",
-      color: props.color
-    }}
     {...props}
   />
 );
@@ -24,7 +17,7 @@ export const PostCategory = props => (
 export const PostCategories = ({
   categories,
   limit = 3,
-  color = "white",
+  color="#ADADAD",
   ...props
 }) => {
   const limitCategories =
@@ -33,10 +26,10 @@ export const PostCategories = ({
       : categories;
 
   return (
-    <Flex flexWrap="wrap" mt="12px" {...props}>
+    <Flex   {...props} >
       {limitCategories.map(category => (
-        <PostCategory color={color} key={category.id} mr="6px" mb="6px">
-          <Link
+        <PostCategory key={category.id} mr="6px" >
+          <Link 
             link={category.link}
             dangerouslySetInnerHTML={{ __html: decode(category.name) }}
           />

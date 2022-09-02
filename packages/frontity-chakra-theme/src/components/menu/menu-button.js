@@ -6,15 +6,18 @@ const MenuButton = forwardRef((props, ref) => (
   <Box
     ref={ref}
     as="button"
-    display={{ base: "flex", lg: "none" }}
+    display={{ base: "flex", md: "none" }}
     alignItems="center"
-    justifyContent="center"
+    justifyContent="flex-end"
     flexShrink="0"
-    mr={{ base: "auto", lg: "0" }}
-    ml={{ base: "12px", sm: "0" }}
+    boxSize="36px"
+    borderRadius="5px"
+    bgColor="briefstory.menuIcon"
+/*     mr={{ base: "auto", lg: "0" }}
+    ml={{ base: "12px", md: "40px" }} */
     {...props}
   >
-    <Box boxSize={10} color="accent.400" as={IoIosMenu} />
+    <Box boxSize="15px" margin="0 auto" color="briefstory.blueIcon" as={IoIosMenu} />
   </Box>
 ));
 

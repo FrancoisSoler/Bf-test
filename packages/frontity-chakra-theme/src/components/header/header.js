@@ -4,55 +4,55 @@ import Link from "../link";
 import MobileMenu from "../menu";
 import { isUrl, omitConnectProps } from "../helpers";
 import { connect } from "frontity";
-
-const SiteHeader = props => (
+import { images } from "../constants";
+const SiteHeader = (props) => (
   <Box
     as="header"
     transition="transform ease .25s"
     width="100%"
-    pos="fixed"
+    height={{ base: "80px", lg: "75px" }}
+    pos={{ base: "fixed", lg: "relative" }}
     top="0"
     left="0"
-    bg="primary.700"
+    bg={{ base: "briefstory.menu", md: "#fff" }}
     zIndex="90"
     {...props}
   />
 );
 
-const SiteHeaderInner = props => (
+const SiteHeaderInner = (props) => (
   <Flex
+    as="SiteHeaderInner"
     align="center"
-    width={{ base: "auto", sm: "92%" }}
+    width={{ base: "93%", lg: "100%" }}
     mx="auto"
-    height={{ sm: "70px" }}
-    maxW="1550px"
+    justifyContent={{ base: "space-between" }}
+    pt={{ base: "20px", md: "5px" }}
+    height={{ base: "55px", lg: "100%" }}
+    maxW="1072px"
     {...props}
   />
 );
 
-const Logo = ({ isImage = true, src }) =>
-  isImage ? (
-    <Box as="img" src={src} width="120px" />
-  ) : (
-      <Box
-        fontSize="2xl"
-        color="white"
-        fontFamily="heading"
-        textTransform="uppercase"
-        fontWeight="bold"
-      >
-        {src}
-      </Box>
-    );
-
+const Logo = ({ isImage = true, src }) => (
+  <Box
+    as="img"
+    src={src}
+    width={{ base: "138px", lg: "194.6px" }}
+    height="40px"
+    display="flex"
+    flexGrow="1"
+    margin="0 auto"
+  />
+);
 const SiteLogo = connect(({ state, ...props }) => {
   // check if the logo is a url,
   // we assume, if it's a url, it points to an image, else it's a text
   const isImage = isUrl(state.theme.logo);
   return (
-    <Box display="block" flexShrink="0" {...omitConnectProps(props)}>
-      <Link link="/">
-        <Logo isImage={isImage} src={state.theme.logo} />
+    <Box display="flex" {...omitConnectProps(props)}>
+      <Link link="/" justifyContent="center">
+        <Logo isImage={isImage} src={images.BfLogo} />
       </Link>
     </Box>
   );

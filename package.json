@@ -1,5 +1,5 @@
 {
-  "name": "briefstory-test",
+  "name": "briefstory-frontity",
   "version": "1.0.0",
   "private": true,
   "description": "Frontity project",
@@ -17,11 +17,21 @@
   },
   "prettier": {},
   "dependencies": {
-    "@frontity/core": "^1.15.1",
+    "@frontity/core": "^1.16.0",
+    "@frontity/head-tags": "^1.1.1",
     "@frontity/html2react": "^1.7.0",
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
+    "@frontity/yoast": "^2.1.1",
+    "@fullpage/react-fullpage": "^0.1.19",
     "frontity": "^1.17.2",
-    "frontity-chakra-theme": "./packages/frontity-chakra-theme"
+    "frontity-chakra-theme": "./packages/frontity-chakra-theme",
+    "gsap": "^3.11.0",
+    "qrcode.react": "^3.1.0",
+    "react-cookie-consent": "^8.0.1",
+    "react-iframe": "^1.8.0",
+    "react-intersection-observer": "^9.4.0",
+    "react-lottie": "^1.2.3",
+    "react-use-scroll-snap": "^0.0.4"
   }
 }

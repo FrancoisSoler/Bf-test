@@ -1,57 +1,61 @@
 const settings = {
-  "name": "briefstory-test",
-  "state": {
-    "frontity": {
-      "url": "https://test.frontity.org",
-      "title": "Test Frontity Blog",
-      "description": "WordPress installation for Frontity development"
-    }
+  name: "briefstory-frontity",
+  state: {
+    frontity: {
+      url: "https://briefstory.staging.tempurl.host/",
+      logo: "Briefstory",
+      title: "Briefstory",
+      description: "Briefstory on Frontity",
+    },
   },
-  "packages": [
+  
+  packages: [
     {
-      "name": "frontity-chakra-theme",
-      "state": {
-        "theme": {
-          "menu": [
-            [
-              "Home",
-              "/"
-            ],
-            [
-              "Nature",
-              "/category/nature/"
-            ],
-            [
-              "Travel",
-              "/category/travel/"
-            ],
-            [
-              "Japan",
-              "/tag/japan/"
-            ],
-            [
-              "About Us",
-              "/about-us/"
-            ]
+      name: "frontity-chakra-theme",
+      state: {
+        theme: {
+          socialLinks: [
+            ["twitter", "https://twitter.com/briefstory"],
+            ["facebook", "https://www.facebook.com/briefstory.io/"],
+            ["linkedin", " https://www.linkedin.com/company/briefstory/"],
+            ["instagram", "https://www.instagram.com/briefstory.io/"],
           ],
-          "featured": {
-            "showOnList": false,
-            "showOnPost": false
-          }
-        }
-      }
+          menu: [
+
+            [
+              "A propos",
+              "/a-propos/"
+            ],
+            [
+              "Devenez partenaire",
+              "/devenez-partenaire/"
+            ],
+          ],
+          featured: {
+            showOnList: false,
+            showOnPost: false,
+          },
+          autoPrefetch: "in-view"
+        },
+      },
     },
     {
-      "name": "@frontity/wp-source",
-      "state": {
-        "source": {
-          "url": "https://test.frontity.org"
-        }
-      }
+      name: "@frontity/wp-source",
+      state: {
+        source: {
+          url: "https://briefstory.staging.tempurl.host/",
+          params: {
+            per_page: 20,
+            
+          },
+        },
+      },
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
-  ]
+    "@frontity/html2react",
+    "@frontity/head-tags",
+    "@frontity/yoast",
+  ],
 };
 
 export default settings;

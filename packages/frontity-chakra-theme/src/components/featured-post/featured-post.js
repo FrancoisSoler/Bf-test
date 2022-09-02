@@ -49,7 +49,7 @@ export const SecondaryPostPreview = ({ data, ...props }) => {
 };
 
 export const FeaturedPostSection = ({ data, ...props }) => (
-  <Flex as="section" direction={{ base: "column", lg: "row" }} {...props}>
+  <Flex as="section" direction={{ base: "column", lg: "row" }} {...props} backgroundColor={"#f5ddcc7a"}>
     <Box width={{ base: "100%", lg: "65%" }} flexGrow="1">
       <PrimaryPostPreview data={data[0]} />
     </Box>

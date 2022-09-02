@@ -1,5 +1,5 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import React,{useEffect} from "react";
 import Link from "../link";
 import PostCategories from "./post-categories";
 import { formatDate } from "../helpers";
@@ -12,22 +12,30 @@ const PostHeader = ({
   author,
   date,
   isPage,
+  authorLink,
   ...props
-}) => (
-  <Box textAlign="center" {...props}>
+}) => {
+
+  return ( 
+  <Box  {...props}>
+   {/* { console.log('sieufbs', author)} */}
+
     {categories && (
       <PostCategories
-        color="black"
+        color="#83868A9E"
+        fontFamily="OpenSansBold"
+        fontWeight="400"
         categories={categories}
         justifyContent="center"
       />
     )}
     <Heading
-      fontWeight="bold"
-      size="2xl"
-      mt="30px"
-      mb={{ base: "20px", lg: "32px" }}
-      textTransform="uppercase"
+      color="#33344E"
+      fontWeight="1000"
+      size="16px"
+      mt="15px"
+      fontFamily="OpenSansBold"
+      mb={{ base: "1.5em", lg: "2em" }}
       dangerouslySetInnerHTML={{ __html: heading }}
     />
     {description && <Text mt={4}>{description}</Text>}
@@ -35,19 +43,18 @@ const PostHeader = ({
     {!isPage && author && (
       <Text fontSize="lg">
         by{" "}
-        <Link fontWeight="bold" color="accent.400"  link={author.link}>
-          {decode(author.name)} {console.log("baaaaaaaaaah",author.name)}
-          
+        <Link fontWeight="bold" color="accent.400" link={author.link}>
+          {decode(author.name)} 
         </Link>
       </Text>
     )}
     {/* Don't show the date if we're on a page type */}
     {!isPage && date && (
-      <Text fontSize="md" mt="12px">
+      <Text display="flex" justifyContent="center" fontSize="sm">
         {formatDate(date)}
-      </Text>
-    )}
-  </Box>
-);
+      </Text> )}
+
+  </Box>)
+};
 
 export default PostHeader;

@@ -2,17 +2,16 @@ import { Box, Button, Heading, Input, Text, Stack } from "@chakra-ui/react";
 import { connect } from "frontity";
 import React from "react";
 import Archive from "../archive";
-import { PatternBox, PatternBoxInner } from "../newsletter";
+import { PatternBox, PatternBoxInner } from "../styles/pattern-box";
 import useSearch from "../hooks/useSearch";
 
 const SearchHeader = ({ label, title, ...props }) => (
-  <Box {...props}>
+  <Box mt="120px">
     <Heading
       size="md"
       as="h6"
       fontWeight="medium"
       textTransform="uppercase"
-      color="accent.400"
     >
       {label}
     </Heading>
@@ -23,7 +22,7 @@ const SearchHeader = ({ label, title, ...props }) => (
       as="h1"
       textTransform="uppercase"
       fontSize="3.5rem"
-      color="white"
+      
     >
       {title}
     </Heading>
@@ -33,12 +32,12 @@ const SearchHeader = ({ label, title, ...props }) => (
 const SearchResultTitle = ({ resultCount, query }) => (
   <SearchHeader
     title={`‘${query}’`}
-    label={`${resultCount} ${resultCount > 1 ? "results" : "result"} for`}
+    label={`${resultCount} ${resultCount > 1 ? "resultats" : "result"} pour`}
   />
 );
 
 const NoResultTitle = ({ query }) => (
-  <SearchHeader label={`0 result for`} title={`‘${query}’`} />
+  <SearchHeader label={`0 aucun resultats pour`} title={`‘${query}’`} />
 );
 
 const NoResultContent = props => (
@@ -48,8 +47,8 @@ const NoResultContent = props => (
     position="relative"
     mx="auto"
     mt="-60px"
-    bg="white"
-    width="92%"
+    bg="briefstory.bg"
+    width="100%"
     {...props}
   />
 );
@@ -74,18 +73,15 @@ const SearchForm = connect(props => {
 
 export const SearchResults = ({ state }) => {
   const data = state.source.get(state.router.link);
-
   // Get the total pages that match the current path/url
   const isEmpty = data.total === 0;
 
   return (
-    <Box bg="primary.100">
+    <Box bg="briefstory.bg">
       <PatternBox
-        showPattern={state.theme.showBackgroundPattern}
-        pb="60px"
-        mb="-60px"
+         mb="-60px"
       >
-        <PatternBoxInner>
+        <PatternBoxInner margin={'0 auto'} textAlign={'center'}>
           {isEmpty ? (
             <NoResultTitle query={data.searchQuery.replace(/\+/g, " ")} />
           ) : (
@@ -108,7 +104,7 @@ export const SearchResults = ({ state }) => {
           </Box>
         </NoResultContent>
       ) : (
-        <Archive />
+        <Archive/>
       )}
     </Box>
   );

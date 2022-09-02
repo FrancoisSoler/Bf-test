@@ -63,53 +63,22 @@ const SubscribeInput = props => (
     width="100%"
     display="block"
     bg="white"
-    height="60px"
+    height="30px"
     border="none"
     px="15px"
-    fontSize="1.125rem"
-    placeholder="Subscribe to our newsletter"
+    fontSize="10px"
+    borderBlock="1px orange"
+    placeholder="Email"
     _placeholder={{ color: "gray.500" }}
     {...props}
   />
 );
 
-const SubscribeButton = props => (
-  <Box
-    as="button"
-    transition="background-color ease .25s"
-    bg="white"
-    fontSize={{ base: "1.625rem" }}
-    cursor="pointer"
-    textAlign="center"
-    color="accent.400"
-    flexShrink="0"
-    height="60px"
-    minWidth="60px"
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
-    _hover={{
-      bg: "accent.400",
-      color: "white"
-    }}
-    _focus={{
-      bg: "accent.400",
-      color: "white"
-    }}
-    {...props}
-  >
-    <Box
-      focusable="false"
-      width="40px"
-      height="auto"
-      as={IoIosArrowRoundForward}
-    />
-  </Box>
-);
 
-const SubscribeForm = props => (
-  <Flex as="form" mt="40px" {...props}>
+
+
+export const SubscribeForm = props => (
+  <Flex as="form"  {...props}>
     <SubscribeInput />
-    <SubscribeButton />
   </Flex>
 );
